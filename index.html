@@ -1,0 +1,39 @@
+<script>
+function p(s){
+  document.getElementById('stdout').innerHTML += s + '<br>';
+}
+</script>
+<dl>
+<dt>プログラム:</dt>
+<dd><textarea id="src" cols="80" rows="25">
+function play_montyhall(doors, change) {
+    const car = Math.floor(Math.random() * doors)
+    const select = Math.floor(Math.random() * doors)
+    return change ? car != select : car == select
+}
+
+function repeat(doors, change, n) {
+    let win = 0
+    for(let i = 0; i < n; i++) {
+        win  += play_montyhall(doors, change)
+    }
+    return win / n
+}
+
+p("winning rate: " + repeat(3, true, 100000))
+</textarea>
+</dd>
+<dd><input type="submit" value="実行" onclick="
+  document.getElementById('stdout').innerHTML = '';
+  document.getElementById('stderr').innerHTML = '';
+  try {
+    eval(document.getElementById('src').value);
+  }catch(e){
+    document.getElementById('stderr').innerHTML = e;
+  }
+"></dd>
+<dt>出力:</dt>
+<dd><div id="stdout"></div></dd>
+<dt>エラー:</dt>
+<dd><div id="stderr"></div></dd>
+</dl>
