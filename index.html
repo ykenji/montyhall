@@ -4,7 +4,7 @@ function p(s){
 }
 </script>
 <dl>
-<dt>プログラム:</dt>
+<dt>code:</dt>
 <dd><textarea id="src" cols="80" rows="25">
 function play_montyhall(doors, change) {
     const car = Math.floor(Math.random() * doors)
@@ -12,7 +12,7 @@ function play_montyhall(doors, change) {
     return change ? car != select : car == select
 }
 
-function repeat(doors, change, n) {
+function simulate(doors, change, n) {
     let win = 0
     for(let i = 0; i < n; i++) {
         win  += play_montyhall(doors, change)
@@ -20,7 +20,7 @@ function repeat(doors, change, n) {
     return win / n
 }
 
-p("winning rate: " + repeat(3, true, 100000))
+p("winning rate: " + simulate(3, true, 100000))
 </textarea>
 </dd>
 <dd><input type="submit" value="実行" onclick="
@@ -32,8 +32,8 @@ p("winning rate: " + repeat(3, true, 100000))
     document.getElementById('stderr').innerHTML = e;
   }
 "></dd>
-<dt>出力:</dt>
+<dt>output:</dt>
 <dd><div id="stdout"></div></dd>
-<dt>エラー:</dt>
+<dt>error:</dt>
 <dd><div id="stderr"></div></dd>
 </dl>
