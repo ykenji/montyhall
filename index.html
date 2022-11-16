@@ -14,8 +14,8 @@ function play_montyhall(doors, change) {
 
 function simulate(doors, change, n) {
     let win = 0
-    for(let i = 0; i < n; i++) {
-        win  += play_montyhall(doors, change)
+    for (let i = 0; i < n; i++) {
+        win += play_montyhall(doors, change)
     }
     return win / n
 }
