@@ -1,11 +1,20 @@
-<script>
-function p(s){
-  document.getElementById('stdout').innerHTML += s + '<br>';
-}
-</script>
-<dl>
-<dt>code:</dt>
-<dd><textarea id="src" cols="80" rows="25">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title>Monty Hall problem</title>
+<style type="text/css">
+  div#stdout, div#stderr{
+    border:1px solid black;
+    padding:1em;
+    margin-top:1em;
+  }
+</style>
+</head>
+<body>
+<h1>Monty Hall problem</h1>
+<table><tr><td valign="top">
+<textarea id="src" rows="25" cols="80">
 function play_montyhall(doors, change) {
     const car = Math.floor(Math.random() * doors)
     const select = Math.floor(Math.random() * doors)
@@ -14,26 +23,37 @@ function play_montyhall(doors, change) {
 
 function simulate(doors, change, n) {
     let win = 0
-    for (let i = 0; i < n; i++) {
-        win += play_montyhall(doors, change)
+    for(let i = 0; i < n; i++) {
+        win  += play_montyhall(doors, change)
     }
     return win / n
 }
-
 p("winning rate: " + simulate(3, true, 100000))
-</textarea>
-</dd>
-<dd><input type="submit" value="実行" onclick="
+</textarea><br>
+<div style="float:right;">
+<span id="time"></span>
+<input type="button" value="run" onclick="
   document.getElementById('stdout').innerHTML = '';
   document.getElementById('stderr').innerHTML = '';
   try {
+    var before = new Date();
     eval(document.getElementById('src').value);
-  }catch(e){
+    var after = new Date();
+    document.getElementById('time').innerHTML = 'Time: ' + (after - before) / 1000 + 'sec';
+  } catch(e) {
     document.getElementById('stderr').innerHTML = e;
   }
 "></dd>
-<dt>output:</dt>
-<dd><div id="stdout"></div></dd>
-<dt>error:</dt>
-<dd><div id="stderr"></div></dd>
-</dl>
+</div><br style="clear:both"/>
+<div id="stdout"></div>
+<div id="stderr"></div>
+</td></tr></table>
+
+<script>
+function p(s){
+  document.getElementById('stdout').innerHTML += s + '<br>';
+}
+</script>
+</script>
+</body>
+</html>
