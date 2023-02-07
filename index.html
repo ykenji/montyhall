@@ -16,19 +16,19 @@
 <table><tr><td valign="top">
 <textarea id="src" rows="25" cols="80">
 function play_montyhall(doors, change) {
-    const car = Math.floor(Math.random() * doors)
-    const select = Math.floor(Math.random() * doors)
-    return change ? car != select : car == select
+    const car = Math.floor(Math.random() * doors);
+    const select = Math.floor(Math.random() * doors);
+    return change ? car != select : car == select;
 }
 
 function simulate(doors, change, n) {
-    let win = 0
+    let win = 0;
     for(let i = 0; i < n; i++) {
-        win  += play_montyhall(doors, change)
+        win += play_montyhall(doors, change);
     }
-    return win / n
+    return win / n;
 }
-p("winning rate: " + simulate(3, true, 100000))
+p("winning rate: " + simulate(3, true, 100000));
 </textarea><br>
 <div style="float:right;">
 <span id="time"></span>
